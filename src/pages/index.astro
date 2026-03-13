@@ -16,21 +16,35 @@ import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
 				padding: 3rem 1rem;
 			}
 			.hero {
+				display: flex;
+				gap: 2rem;
+				align-items: flex-start;
 				margin-bottom: 3rem;
 			}
-			.hero h1 {
+			.hero-text {
+				flex: 1;
+			}
+			.hero-text h1 {
 				font-size: 2.5rem;
 				margin: 0 0 0.5rem;
 			}
-			.hero .subtitle {
+			.hero-text .subtitle {
 				font-size: 1.1rem;
 				color: rgb(var(--gray));
 				margin: 0 0 1.5rem;
 			}
-			.hero p {
+			.hero-text p {
 				font-size: 1rem;
 				line-height: 1.7;
 				color: rgb(var(--gray-dark));
+			}
+			.avatar {
+				width: 120px;
+				height: 120px;
+				border-radius: 50%;
+				object-fit: cover;
+				flex-shrink: 0;
+				margin-top: 0.5rem;
 			}
 			.links {
 				display: flex;
@@ -51,29 +65,39 @@ import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
 				background: rgb(var(--accent));
 				color: white;
 			}
+			@media (max-width: 480px) {
+				.hero {
+					flex-direction: column-reverse;
+				}
+				.avatar {
+					width: 80px;
+					height: 80px;
+				}
+			}
 		</style>
 	</head>
 	<body>
 		<Header />
 		<main>
 			<div class="hero">
-				<h1>James Weng</h1>
-				<p class="subtitle">CS + Education @ UIUC &nbsp;·&nbsp; Builder &nbsp;·&nbsp; Problem Solver</p>
-				<p>
-					I am currently a sophomore majoring CS+EDU (Learning Science) at the University of Illinois
-					at Urbana-Champaign, graduating in December 2026/May 2027. I was originally from Shenzhen,
-					China, and spent 18 years in this fast-growing city. Right now, college life provides me a
-					chance to experience more.
-				</p>
-				<div class="links">
-					<a href="/portfolio">Projects</a>
-					<a href="/about">About</a>
-					<a href="/blog">Blog</a>
-					<a href="https://github.com/JamesWeng0428" target="_blank" rel="noopener">GitHub</a>
-					<a href="https://www.linkedin.com/in/JamesWeng0428" target="_blank" rel="noopener">LinkedIn</a>
+				<div class="hero-text">
+					<h1>James Weng</h1>
+					<p class="subtitle">CS + Education @ UIUC &nbsp;·&nbsp; Builder &nbsp;·&nbsp; Problem Solver</p>
+					<p>
+						I am currently a sophomore majoring CS+EDU (Learning Science) at the University of Illinois
+						at Urbana-Champaign, graduating in December 2026/May 2027. I was originally from Shenzhen,
+						China, and spent 18 years in this fast-growing city. Right now, college life provides me a
+						chance to experience more.
+					</p>
+					<div class="links">
+						<a href="/portfolio">Projects</a>
+						<a href="/blog">Blog</a>
+						<a href="https://github.com/JamesWeng0428" target="_blank" rel="noopener">GitHub</a>
+						<a href="https://www.linkedin.com/in/JamesWeng0428" target="_blank" rel="noopener">LinkedIn</a>
+					</div>
 				</div>
+				<img src="/favicon.png" alt="James Weng" class="avatar" />
 			</div>
-
 		</main>
 		<Footer />
 	</body>
