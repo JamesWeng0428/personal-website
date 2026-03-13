@@ -6,6 +6,6 @@ import { defineConfig } from 'astro/config';
 
 // TODO: Replace 'your-github-username' with your actual GitHub username
 export default defineConfig({
-	site: 'https://your-github-username.github.io',
+	site: 'https://JamesWeng0428.github.io',
 	integrations: [mdx(), sitemap()],
 });

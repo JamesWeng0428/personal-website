@@ -4,19 +4,30 @@ import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 
-// Add your projects here
 const projects = [
 	{
-		title: 'Project One',
-		description: 'A short description of what this project does and the problem it solves.',
-		url: 'https://github.com/your-username/project-one',
-		tags: ['TypeScript', 'React'],
+		title: 'OhMyTSS',
+		description:
+			'iOS app built in Swift that integrates HealthKit to transform wearable workout data into readiness and training-load insights, using an on-device, privacy-first architecture.',
+		url: 'https://github.com/JamesWeng0428',
+		tags: ['Swift', 'iOS', 'HealthKit'],
+		period: 'Nov 2025 – Present',
 	},
 	{
-		title: 'Project Two',
-		description: 'A short description of what this project does and the problem it solves.',
-		url: 'https://github.com/your-username/project-two',
-		tags: ['Python', 'FastAPI'],
+		title: 'Meeting Minion',
+		description:
+			'End-to-end AI web app for automated meeting transcription and summarization. Led a cross-functional team; integrated WhisperX, Ollama LLM, Streamlit UI, and SQLite. 64+ pytest tests at 100% pass rate.',
+		url: 'https://github.com/JamesWeng0428',
+		tags: ['Python', 'WhisperX', 'LLM', 'Streamlit'],
+		period: 'Aug 2025 – Jan 2026',
+	},
+	{
+		title: 'Seizure Prediction Bracelet',
+		description:
+			'Wearable seizure-prediction device built for my brother, combining advanced sensors and machine learning to analyze real-time biometric data and deliver timely alerts.',
+		url: 'https://github.com/JamesWeng0428',
+		tags: ['C++', 'Machine Learning', 'Embedded Systems'],
+		period: '2022 – 2024',
 	},
 ];
 ---
@@ -35,7 +46,7 @@ const projects = [
 				margin-bottom: 0.5rem;
 			}
 			.subtitle {
-				color: #666;
+				color: rgb(var(--gray));
 				margin-bottom: 2rem;
 			}
 			.projects {
@@ -48,12 +59,20 @@ const projects = [
 				border-radius: 8px;
 				padding: 1.5rem;
 				transition: box-shadow 0.2s;
+				display: flex;
+				flex-direction: column;
 			}
 			.card:hover {
 				box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 			}
+			.card-header {
+				display: flex;
+				justify-content: space-between;
+				align-items: flex-start;
+				margin-bottom: 0.5rem;
+			}
 			.card h2 {
-				margin: 0 0 0.5rem;
+				margin: 0;
 				font-size: 1.1rem;
 			}
 			.card h2 a {
@@ -63,10 +82,18 @@ const projects = [
 			.card h2 a:hover {
 				text-decoration: underline;
 			}
+			.period {
+				font-size: 0.75rem;
+				color: rgb(var(--gray));
+				white-space: nowrap;
+				margin-left: 0.5rem;
+				margin-top: 0.15rem;
+			}
 			.card p {
 				color: #555;
 				font-size: 0.95rem;
 				margin: 0 0 1rem;
+				flex: 1;
 			}
 			.tags {
 				display: flex;
@@ -86,16 +113,19 @@ const projects = [
 		<Header />
 		<main>
 			<h1>Portfolio</h1>
-			<p class="subtitle">A selection of projects I've worked on.</p>
+			<p class="subtitle">A selection of projects I've built.</p>
 			<div class="projects">
 				{
 					projects.map((project) => (
 						<div class="card">
-							<h2>
-								<a href={project.url} target="_blank" rel="noopener noreferrer">
-									{project.title}
-								</a>
-							</h2>
+							<div class="card-header">
+								<h2>
+									<a href={project.url} target="_blank" rel="noopener noreferrer">
+										{project.title}
+									</a>
+								</h2>
+								<span class="period">{project.period}</span>
+							</div>
 							<p>{project.description}</p>
 							<div class="tags">
 								{project.tags.map((tag) => (

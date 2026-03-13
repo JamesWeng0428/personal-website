@@ -9,40 +9,112 @@ import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
 <html lang="en">
 	<head>
 		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+		<style>
+			main {
+				max-width: 720px;
+				margin: 0 auto;
+				padding: 3rem 1rem;
+			}
+			.hero {
+				margin-bottom: 3rem;
+			}
+			.hero h1 {
+				font-size: 2.5rem;
+				margin: 0 0 0.5rem;
+			}
+			.hero .subtitle {
+				font-size: 1.1rem;
+				color: rgb(var(--gray));
+				margin: 0 0 1.5rem;
+			}
+			.hero p {
+				font-size: 1rem;
+				line-height: 1.7;
+				color: rgb(var(--gray-dark));
+			}
+			.links {
+				display: flex;
+				gap: 1rem;
+				flex-wrap: wrap;
+				margin-top: 1.5rem;
+			}
+			.links a {
+				padding: 0.5rem 1rem;
+				border: 1px solid rgb(var(--accent));
+				border-radius: 6px;
+				color: rgb(var(--accent));
+				text-decoration: none;
+				font-size: 0.9rem;
+				transition: background 0.2s, color 0.2s;
+			}
+			.links a:hover {
+				background: rgb(var(--accent));
+				color: white;
+			}
+			section {
+				margin-bottom: 2.5rem;
+			}
+			section h2 {
+				font-size: 1.3rem;
+				margin-bottom: 0.75rem;
+				border-bottom: 1px solid #e2e8f0;
+				padding-bottom: 0.4rem;
+			}
+			.highlights {
+				list-style: none;
+				padding: 0;
+				margin: 0;
+				display: flex;
+				flex-direction: column;
+				gap: 0.4rem;
+			}
+			.highlights li {
+				color: rgb(var(--gray-dark));
+				font-size: 0.95rem;
+			}
+			.highlights li::before {
+				content: '→ ';
+				color: rgb(var(--accent));
+			}
+		</style>
 	</head>
 	<body>
 		<Header />
 		<main>
-			<h1>🧑‍🚀 Hello, Astronaut!</h1>
-			<p>
-				Welcome to the official <a href="https://astro.build/">Astro</a> blog starter template. This template
-				serves as a lightweight, minimally-styled starting point for anyone looking to build a personal
-				website, blog, or portfolio with Astro.
-			</p>
-			<p>
-				This template comes with a few integrations already configured in your
-				<code>astro.config.mjs</code> file. You can customize your setup with
-				<a href="https://astro.build/integrations">Astro Integrations</a> to add tools like Tailwind,
-				React, or Vue to your project.
-			</p>
-			<p>Here are a few ideas on how to get started with the template:</p>
-			<ul>
-				<li>Edit this page in <code>src/pages/index.astro</code></li>
-				<li>Edit the site header items in <code>src/components/Header.astro</code></li>
-				<li>Add your name to the footer in <code>src/components/Footer.astro</code></li>
-				<li>Check out the included blog posts in <code>src/content/blog/</code></li>
-				<li>Customize the blog post page layout in <code>src/layouts/BlogPost.astro</code></li>
-			</ul>
-			<p>
-				Have fun! If you get stuck, remember to
-				<a href="https://docs.astro.build/">read the docs</a>
-				or <a href="https://astro.build/chat">join us on Discord</a> to ask questions.
-			</p>
-			<p>
-				Looking for a blog template with a bit more personality? Check out
-				<a href="https://github.com/Charca/astro-blog-template">astro-blog-template</a>
-				by <a href="https://twitter.com/Charca">Maxi Ferreira</a>.
-			</p>
+			<div class="hero">
+				<h1>James Weng</h1>
+				<p class="subtitle">CS + Education @ UIUC &nbsp;·&nbsp; Builder &nbsp;·&nbsp; Problem Solver</p>
+				<p>
+					I'm a computer science and learning science student at the University of Illinois at
+					Urbana-Champaign, graduating December 2026. I like building things that sit at the
+					intersection of software and people — from iOS health apps to AI-powered tools.
+				</p>
+				<div class="links">
+					<a href="/portfolio">Projects</a>
+					<a href="/about">About</a>
+					<a href="/blog">Blog</a>
+					<a href="https://github.com/JamesWeng0428" target="_blank" rel="noopener">GitHub</a>
+					<a href="https://www.linkedin.com/in/JamesWeng0428" target="_blank" rel="noopener">LinkedIn</a>
+				</div>
+			</div>
+
+			<section>
+				<h2>Currently</h2>
+				<ul class="highlights">
+					<li>Course Assistant for CS124 at the Siebel School of Computing and Data Science</li>
+					<li>Co-founder & developer of OhMyTSS — an iOS training readiness app in Swift</li>
+					<li>James Scholar at UIUC (GPA 3.80)</li>
+				</ul>
+			</section>
+
+			<section>
+				<h2>Background</h2>
+				<ul class="highlights">
+					<li>MIT Game Lab Summer School — time series modeling (2023)</li>
+					<li>Stanford AI4ALL Scholar — AI research and mentorship (2020)</li>
+					<li>USACO Gold Division (2021–2022), AMC 12 Top 1%, AIME 11/15</li>
+				</ul>
+			</section>
 		</main>
 		<Footer />
 	</body>
