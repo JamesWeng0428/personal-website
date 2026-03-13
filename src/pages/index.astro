@@ -51,31 +51,6 @@ import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
 				background: rgb(var(--accent));
 				color: white;
 			}
-			section {
-				margin-bottom: 2.5rem;
-			}
-			section h2 {
-				font-size: 1.3rem;
-				margin-bottom: 0.75rem;
-				border-bottom: 1px solid #e2e8f0;
-				padding-bottom: 0.4rem;
-			}
-			.highlights {
-				list-style: none;
-				padding: 0;
-				margin: 0;
-				display: flex;
-				flex-direction: column;
-				gap: 0.4rem;
-			}
-			.highlights li {
-				color: rgb(var(--gray-dark));
-				font-size: 0.95rem;
-			}
-			.highlights li::before {
-				content: '→ ';
-				color: rgb(var(--accent));
-			}
 		</style>
 	</head>
 	<body>
@@ -85,9 +60,10 @@ import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
 				<h1>James Weng</h1>
 				<p class="subtitle">CS + Education @ UIUC &nbsp;·&nbsp; Builder &nbsp;·&nbsp; Problem Solver</p>
 				<p>
-					I'm a computer science and learning science student at the University of Illinois at
-					Urbana-Champaign, graduating December 2026. I like building things that sit at the
-					intersection of software and people — from iOS health apps to AI-powered tools.
+					I am currently a sophomore majoring CS+EDU (Learning Science) at the University of Illinois
+					at Urbana-Champaign, graduating in December 2026/May 2027. I was originally from Shenzhen,
+					China, and spent 18 years in this fast-growing city. Right now, college life provides me a
+					chance to experience more.
 				</p>
 				<div class="links">
 					<a href="/portfolio">Projects</a>
@@ -98,23 +74,6 @@ import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
 				</div>
 			</div>
 
-			<section>
-				<h2>Currently</h2>
-				<ul class="highlights">
-					<li>Course Assistant for CS124 at the Siebel School of Computing and Data Science</li>
-					<li>Co-founder & developer of OhMyTSS — an iOS training readiness app in Swift</li>
-					<li>James Scholar at UIUC (GPA 3.80)</li>
-				</ul>
-			</section>
-
-			<section>
-				<h2>Background</h2>
-				<ul class="highlights">
-					<li>MIT Game Lab Summer School — time series modeling (2023)</li>
-					<li>Stanford AI4ALL Scholar — AI research and mentorship (2020)</li>
-					<li>USACO Gold Division (2021–2022), AMC 12 Top 1%, AIME 11/15</li>
-				</ul>
-			</section>
 		</main>
 		<Footer />
 	</body>
