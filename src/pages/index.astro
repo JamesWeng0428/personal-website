@@ -96,6 +96,11 @@ import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
 				width: 100%;
 				border-radius: 8px;
 			}
+			@media (max-width: 560px) {
+				.video-grid {
+					grid-template-columns: 1fr;
+				}
+			}
 			.cycling {
 				margin-top: 2.5rem;
 			}
@@ -126,11 +131,6 @@ import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
 			}
 			@media (max-width: 560px) {
 				.photo-gallery {
-					grid-template-columns: 1fr;
-				}
-			}
-			@media (max-width: 560px) {
-				.video-grid {
 					grid-template-columns: 1fr;
 				}
 			}
@@ -178,7 +178,7 @@ import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
 			</div>
 			<div class="bouldering">
 				<h2>Bouldering</h2>
-				<p>I am not a NERD. I do sport outside from my computer. Bouldering is one of them. I am an active climber at <a href="https://www.urbanaboulders.com/" target="_blank" rel="noopener">Urbana Boulder&Boneyard Boulders</a>. Here are some videos. If you are interested in climbing, you can follow my instagram account: <a href="https://www.instagram.com/jamesweng0428/" target="_blank" rel="noopener">JamesWeng0428</a></p>
+				<p>I am not a NERD. I do sport outside from my computer. Bouldering is one of them. I am an active climber at <a href="https://www.urbanaboulders.com/" target="_blank" rel="noopener">Urbana Boulders &amp; Boneyard Boulders</a>. Here are some videos. If you are interested in climbing, you can follow my instagram account: <a href="https://www.instagram.com/jamesweng0428/" target="_blank" rel="noopener">JamesWeng0428</a></p>
 				<div class="video-grid">
 					<video controls playsinline>
 						<source src="/帅飞了.MP4" type="video/mp4" />
