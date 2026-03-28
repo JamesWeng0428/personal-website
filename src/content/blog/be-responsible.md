@@ -1,6 +1,6 @@
 ---
 title: 'Be Responsible'
-description: 'Being irresponsible is easy, but it hurts people's feelings.'
+description: "Being irresponsible is easy, but it hurts people's feelings."
 pubDate: 'Mar 27 2026'
 ---
 
