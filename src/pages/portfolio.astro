@@ -1,4 +1,5 @@
 ---
+import OGImage from '../assets/blog-placeholder-4.jpg';
 import BaseHead from '../components/BaseHead.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
@@ -35,7 +36,7 @@ const projects = [
 <!doctype html>
 <html lang="en">
 	<head>
-		<BaseHead title={`Projects | ${SITE_TITLE}`} description="A selection of software projects I've built — iOS apps, AI tools, and embedded systems." />
+		<BaseHead title={`Projects | ${SITE_TITLE}`} description="A selection of software projects I've built — iOS apps, AI tools, and embedded systems." image={OGImage} />
 		<style>
 			main {
 				max-width: 960px;
@@ -55,15 +56,22 @@ const projects = [
 				gap: 1.5rem;
 			}
 			.card {
+				position: relative;
 				border: 1px solid #e2e8f0;
 				border-radius: 8px;
 				padding: 1.5rem;
-				transition: box-shadow 0.2s;
+				transition: box-shadow 0.2s, transform 0.2s;
 				display: flex;
 				flex-direction: column;
 			}
 			.card:hover {
 				box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+				transform: translateY(-2px);
+			}
+			.card-link {
+				position: absolute;
+				inset: 0;
+				z-index: 1;
 			}
 			.card-header {
 				display: flex;
@@ -74,13 +82,7 @@ const projects = [
 			.card h2 {
 				margin: 0;
 				font-size: 1.1rem;
-			}
-			.card h2 a {
-				text-decoration: none;
-				color: inherit;
-			}
-			.card h2 a:hover {
-				text-decoration: underline;
+				color: rgb(var(--black));
 			}
 			.period {
 				font-size: 0.75rem;
@@ -90,7 +92,7 @@ const projects = [
 				margin-top: 0.15rem;
 			}
 			.card p {
-				color: #555;
+				color: rgb(var(--gray-dark));
 				font-size: 0.95rem;
 				margin: 0 0 1rem;
 				flex: 1;
@@ -101,8 +103,8 @@ const projects = [
 				gap: 0.4rem;
 			}
 			.tag {
-				background: #f0f4f8;
-				color: #444;
+				background: rgb(var(--gray-light));
+				color: rgb(var(--gray-dark));
 				font-size: 0.75rem;
 				padding: 0.2rem 0.6rem;
 				border-radius: 999px;
@@ -118,12 +120,9 @@ const projects = [
 				{
 					projects.map((project) => (
 						<div class="card">
+							<a href={project.url} target="_blank" rel="noopener noreferrer" class="card-link" aria-label={project.title} />
 							<div class="card-header">
-								<h2>
-									<a href={project.url} target="_blank" rel="noopener noreferrer">
-										{project.title}
-									</a>
-								</h2>
+								<h2>{project.title}</h2>
 								<span class="period">{project.period}</span>
 							</div>
 							<p>{project.description}</p>

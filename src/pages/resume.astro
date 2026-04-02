@@ -1,4 +1,5 @@
 ---
+import OGImage from '../assets/blog-placeholder-5.jpg';
 import BaseHead from '../components/BaseHead.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
@@ -8,7 +9,7 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 <!doctype html>
 <html lang="en">
 	<head>
-		<BaseHead title={`Resume | ${SITE_TITLE}`} description="James Weng's resume — CS + Education at UIUC, software engineering and research experience." />
+		<BaseHead title={`Resume | ${SITE_TITLE}`} description="James Weng's resume — CS + Education at UIUC, software engineering and research experience." image={OGImage} />
 		<style>
 			main {
 				max-width: 960px;
