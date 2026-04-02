@@ -1,9 +1,16 @@
 ---
+import { getCollection } from 'astro:content';
 import AvatarImage from '../assets/blog-placeholder-1.jpg';
 import BaseHead from '../components/BaseHead.astro';
 import Footer from '../components/Footer.astro';
+import FormattedDate from '../components/FormattedDate.astro';
 import Header from '../components/Header.astro';
 import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
+
+const posts = (await getCollection('blog')).sort(
+	(a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
+);
+const latestPost = posts[0];
 ---
 
 <!doctype html>
@@ -95,6 +102,35 @@ import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
 				content: "\2192 ";
 				color: rgb(var(--accent));
 			}
+			.latest-post {
+				display: block;
+				padding: 1rem 1.25rem;
+				border: 1px solid rgb(var(--gray-light));
+				border-radius: 8px;
+				text-decoration: none;
+				transition: box-shadow 0.2s, transform 0.2s;
+			}
+			.latest-post:hover {
+				box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+				transform: translateY(-1px);
+			}
+			.latest-post-title {
+				font-size: 1rem;
+				font-weight: 700;
+				color: rgb(var(--black));
+				margin: 0 0 0.25rem;
+			}
+			.latest-post-meta {
+				font-size: 0.85rem;
+				color: rgb(var(--gray));
+				margin: 0 0 0.5rem;
+			}
+			.latest-post-desc {
+				font-size: 0.9rem;
+				color: rgb(var(--gray-dark));
+				margin: 0;
+				line-height: 1.5;
+			}
 			.video-grid {
 				display: grid;
 				grid-template-columns: 1fr 1fr;
@@ -104,6 +140,7 @@ import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
 			.video-grid video {
 				width: 100%;
 				border-radius: 8px;
+				min-height: 44px;
 			}
 			.photo-gallery {
 				display: grid;
@@ -116,6 +153,42 @@ import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
 				aspect-ratio: 1;
 				object-fit: cover;
 				border-radius: 8px;
+				cursor: pointer;
+				transition: transform 0.2s;
+			}
+			.photo-gallery img:hover {
+				transform: scale(1.03);
+			}
+			/* Lightbox */
+			.lightbox {
+				display: none;
+				position: fixed;
+				inset: 0;
+				z-index: 300;
+				background: rgba(0, 0, 0, 0.85);
+				align-items: center;
+				justify-content: center;
+				cursor: pointer;
+			}
+			.lightbox.active {
+				display: flex;
+			}
+			.lightbox img {
+				max-width: 90vw;
+				max-height: 90vh;
+				object-fit: contain;
+				border-radius: 4px;
+			}
+			.lightbox-close {
+				position: absolute;
+				top: 1rem;
+				right: 1.5rem;
+				background: none;
+				border: none;
+				color: white;
+				font-size: 2rem;
+				cursor: pointer;
+				line-height: 1;
 			}
 			@media (max-width: 560px) {
 				.hero-body {
@@ -136,7 +209,7 @@ import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
 	</head>
 	<body>
 		<Header />
-		<main>
+		<main id="main-content">
 			<div class="hero">
 				<h1>James Weng</h1>
 				<p class="subtitle">CS + Education @ UIUC &nbsp;·&nbsp; ENTJ &nbsp;·&nbsp; Leadership</p>
@@ -155,14 +228,24 @@ import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
 					<img src="/avatar.png" alt="James Weng" class="avatar" />
 				</div>
 			</div>
-			<div class="section">
+			<div class="section reveal">
 				<h2>Currently</h2>
 				<ul>
 					<li>Mentee for Vishesh Prasad in URSA, completing Mathematical Derivation Graphs Dataset</li>
 					<li>Working with Professor Chris Napolitano with SEB skills</li>
 				</ul>
 			</div>
-			<div class="section">
+			{latestPost && (
+				<div class="section reveal">
+					<h2>Latest Journal</h2>
+					<a href={`/blog/${latestPost.id}/`} class="latest-post">
+						<p class="latest-post-title">{latestPost.data.title}</p>
+						<p class="latest-post-meta"><FormattedDate date={latestPost.data.pubDate} /></p>
+						<p class="latest-post-desc">{latestPost.data.description}</p>
+					</a>
+				</div>
+			)}
+			<div class="section reveal">
 				<h2>Bouldering</h2>
 				<p>I am not a NERD. I do sport outside from my computer. Bouldering is one of them. I am an active climber at <a href="https://www.urbanaboulders.com/" target="_blank" rel="noopener">Urbana Boulders &amp; Boneyard Boulders</a>. Here are some videos. If you are interested in climbing, you can follow my instagram account: <a href="https://www.instagram.com/jamesweng0428/" target="_blank" rel="noopener">JamesWeng0428</a></p>
 				<div class="video-grid">
@@ -174,16 +257,58 @@ import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
 					</video>
 				</div>
 			</div>
-			<div class="section">
+			<div class="section reveal">
 				<h2>Cycling</h2>
 				<p>I also enjoy cycling. I have a GIANT Propel ADV SL. If you love cycling too, you can follow me on <a href="https://www.strava.com/athletes/124960807" target="_blank" rel="noopener">Strava</a></p>
-				<div class="photo-gallery">
+				<div class="photo-gallery" id="photo-gallery">
 					<img src="/cycling-1.JPG" alt="Cycling photo 1" />
 					<img src="/cycling-2.JPG" alt="Cycling photo 2" />
 					<img src="/cycling-3.JPG" alt="Cycling photo 3" />
 				</div>
 			</div>
 		</main>
+		<div class="lightbox" id="lightbox">
+			<button class="lightbox-close" aria-label="Close lightbox">&times;</button>
+			<img src="" alt="" id="lightbox-img" />
+		</div>
 		<Footer />
 	</body>
 </html>
+<script>
+	document.addEventListener('astro:page-load', () => {
+		// Scroll-reveal
+		const reveals = document.querySelectorAll('.reveal');
+		if (reveals.length) {
+			const observer = new IntersectionObserver((entries) => {
+				entries.forEach((entry) => {
+					if (entry.isIntersecting) {
+						entry.target.classList.add('visible');
+						observer.unobserve(entry.target);
+					}
+				});
+			}, { threshold: 0.1 });
+			reveals.forEach((el) => observer.observe(el));
+		}
+
+		// Lightbox
+		const gallery = document.getElementById('photo-gallery');
+		const lightbox = document.getElementById('lightbox');
+		const lightboxImg = document.getElementById('lightbox-img') as HTMLImageElement;
+		if (gallery && lightbox && lightboxImg) {
+			gallery.addEventListener('click', (e) => {
+				const target = e.target as HTMLElement;
+				if (target.tagName === 'IMG') {
+					lightboxImg.src = (target as HTMLImageElement).src;
+					lightboxImg.alt = (target as HTMLImageElement).alt;
+					lightbox.classList.add('active');
+				}
+			});
+			lightbox.addEventListener('click', () => {
+				lightbox.classList.remove('active');
+			});
+			document.addEventListener('keydown', (e) => {
+				if (e.key === 'Escape') lightbox.classList.remove('active');
+			});
+		}
+	});
+</script>

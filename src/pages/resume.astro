@@ -29,7 +29,7 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 			.download-btn {
 				display: inline-block;
 				padding: 0.5rem 1.25rem;
-				background: rgb(var(--accent));
+				background: var(--accent);
 				color: #fff;
 				border-radius: 6px;
 				text-decoration: none;
@@ -38,10 +38,11 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 			}
 			.download-btn:hover {
 				opacity: 0.85;
+				color: #fff;
 			}
 			.pdf-container {
 				width: 100%;
-				border: 1px solid #e2e8f0;
+				border: 1px solid rgb(var(--gray-light));
 				border-radius: 8px;
 				overflow: hidden;
 			}
@@ -51,18 +52,39 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 				display: block;
 				border: none;
 			}
+			.mobile-fallback {
+				display: none;
+				text-align: center;
+				padding: 3rem 1rem;
+				color: rgb(var(--gray));
+			}
+			.mobile-fallback p {
+				margin-bottom: 1.5rem;
+				font-size: 1rem;
+			}
+			@media (max-width: 768px) {
+				.pdf-container iframe {
+					display: none;
+				}
+				.mobile-fallback {
+					display: block;
+				}
+			}
 		</style>
 	</head>
 	<body>
 		<Header />
-		<main>
+		<main id="main-content">
 			<h1>Resume</h1>
 			<p class="subtitle">Interested in working together? Here's a quick look at my background.</p>
 			<div class="actions">
 				<a href="/resume.pdf" download class="download-btn">Download PDF</a>
 			</div>
 			<div class="pdf-container">
-				<iframe src="/resume.pdf" title="James Weng Resume" />
+				<iframe src="/resume.pdf" title="James Weng Resume"></iframe>
+				<div class="mobile-fallback">
+					<p>PDF preview isn't available on mobile. Tap the button above to download and view.</p>
+				</div>
 			</div>
 		</main>
 		<Footer />
