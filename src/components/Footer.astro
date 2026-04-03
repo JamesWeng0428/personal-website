@@ -1,4 +1,5 @@
 ---
+import { fade } from 'astro:transitions';
 const today = new Date();
 ---
 
@@ -7,7 +8,7 @@ const today = new Date();
 		<polyline points="18 15 12 9 6 15" />
 	</svg>
 </button>
-<footer>
+<footer transition:persist>
 	&copy; {today.getFullYear()} James Weng. All rights reserved.
 	<div class="social-links">
 		<a href="https://github.com/JamesWeng0428" target="_blank" aria-label="GitHub">

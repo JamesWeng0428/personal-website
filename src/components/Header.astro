@@ -1,10 +1,11 @@
 ---
 import { SITE_TITLE } from '../consts';
 import HeaderLink from './HeaderLink.astro';
+import { fade } from 'astro:transitions';
 ---
 
 <a href="#main-content" class="skip-link">Skip to content</a>
-<header>
+<header transition:persist>
 	<nav>
 		<button class="menu-toggle" aria-label="Toggle navigation" aria-expanded="false">
 			<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
@@ -38,10 +39,17 @@ import HeaderLink from './HeaderLink.astro';
 		top: 0;
 	}
 	header {
+		position: sticky;
+		top: 0;
+		z-index: 100;
 		margin: 0;
 		padding: 0 1em;
 		background: white;
 		box-shadow: 0 2px 8px rgba(var(--black), 5%);
+		transition: transform 0.3s ease;
+	}
+	header.header-hidden {
+		transform: translateY(-100%);
 	}
 	@media (prefers-color-scheme: dark) {
 		header {
@@ -114,5 +122,21 @@ import HeaderLink from './HeaderLink.astro';
 				toggle.setAttribute('aria-expanded', String(isOpen));
 			});
 		}
+
+		// Scroll-aware header show/hide
+		const header = document.querySelector('header');
+		if (!header) return;
+		let lastScrollY = window.scrollY;
+		const threshold = 60; // px before hiding kicks in
+
+		window.addEventListener('scroll', () => {
+			const currentScrollY = window.scrollY;
+			if (currentScrollY > threshold && currentScrollY > lastScrollY) {
+				header.classList.add('header-hidden');
+			} else {
+				header.classList.remove('header-hidden');
+			}
+			lastScrollY = currentScrollY;
+		}, { passive: true });
 	});
 </script>

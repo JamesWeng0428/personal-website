@@ -3,6 +3,7 @@ import OGImage from '../assets/blog-placeholder-4.jpg';
 import BaseHead from '../components/BaseHead.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
+import { fade } from 'astro:transitions';
 import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 
 const projects = [
@@ -120,7 +121,7 @@ const projects = [
 	</head>
 	<body>
 		<Header />
-		<main id="main-content">
+		<main id="main-content" transition:animate={fade({ duration: '0.3s' })}>
 			<h1>Projects</h1>
 			<p class="subtitle">A selection of projects I've built.</p>
 			<div class="projects">
