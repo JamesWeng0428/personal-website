@@ -30,7 +30,7 @@ import { fade } from 'astro:transitions';
 		padding: 0.5rem 1rem;
 		background: var(--accent);
 		color: #fff;
-		border-radius: 0 0 4px 4px;
+		border-radius: 0 0 var(--radius-sm) var(--radius-sm);
 		z-index: 200;
 		text-decoration: none;
 		font-size: 0.9rem;
@@ -43,32 +43,45 @@ import { fade } from 'astro:transitions';
 		top: 0;
 		z-index: 100;
 		margin: 0;
-		padding: 0 1em;
-		background: white;
-		box-shadow: 0 2px 8px rgba(var(--black), 5%);
-		transition: transform 0.3s ease;
+		padding: 0 2em;
+		background: var(--surface);
+		backdrop-filter: blur(12px);
+		-webkit-backdrop-filter: blur(12px);
+		background: rgba(255, 255, 255, 0.85);
+		border-bottom: 1px solid rgb(var(--gray-light));
+		transition: transform 0.3s ease, box-shadow 0.3s ease;
 	}
 	header.header-hidden {
 		transform: translateY(-100%);
 	}
 	@media (prefers-color-scheme: dark) {
 		header {
-			background: #1a1a2e;
+			background: rgba(22, 22, 42, 0.85);
+			border-bottom-color: rgba(var(--gray-light), 0.3);
 		}
 	}
 	nav {
 		display: flex;
 		align-items: center;
 		justify-content: space-between;
+		max-width: 960px;
+		margin: 0 auto;
 	}
 	nav a {
-		padding: 1em 0.5em;
-		color: var(--black);
-		border-bottom: 4px solid transparent;
+		padding: 0.9em 0.75em;
+		color: rgb(var(--gray));
+		border-bottom: 2px solid transparent;
 		text-decoration: none;
+		font-size: 0.9rem;
+		font-weight: 500;
+		letter-spacing: 0.01em;
+		transition: color 0.2s, border-color 0.2s;
+	}
+	nav a:hover {
+		color: rgb(var(--black));
 	}
 	nav a.active {
-		text-decoration: none;
+		color: rgb(var(--black));
 		border-bottom-color: var(--accent);
 	}
 	.menu-toggle {
@@ -80,6 +93,9 @@ import { fade } from 'astro:transitions';
 		color: rgb(var(--gray-dark));
 	}
 	@media (max-width: 480px) {
+		header {
+			padding: 0 1em;
+		}
 		.menu-toggle {
 			display: block;
 		}
@@ -90,13 +106,15 @@ import { fade } from 'astro:transitions';
 			position: absolute;
 			top: 100%;
 			left: 0;
-			background: white;
-			box-shadow: 0 4px 12px rgba(var(--black), 10%);
+			background: rgba(255, 255, 255, 0.95);
+			backdrop-filter: blur(12px);
+			-webkit-backdrop-filter: blur(12px);
+			box-shadow: var(--shadow-md);
 			z-index: 100;
 		}
 		@media (prefers-color-scheme: dark) {
 			.internal-links {
-				background: #1a1a2e;
+				background: rgba(22, 22, 42, 0.95);
 			}
 		}
 		.internal-links.open {

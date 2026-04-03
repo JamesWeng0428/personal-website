@@ -40,8 +40,8 @@ const { title, description, pubDate, updatedDate, heroImage, prevPost, nextPost 
 			.hero-image img {
 				display: block;
 				margin: 0 auto;
-				border-radius: 12px;
-				box-shadow: var(--box-shadow);
+				border-radius: var(--radius-md);
+				box-shadow: var(--shadow-md);
 			}
 			.prose {
 				width: 720px;
@@ -49,19 +49,23 @@ const { title, description, pubDate, updatedDate, heroImage, prevPost, nextPost 
 				margin: auto;
 				padding: 1em;
 				color: rgb(var(--gray-dark));
+				font-size: 1.05rem;
+				line-height: 1.8;
 			}
 			.title {
-				margin-bottom: 1em;
-				padding: 1em 0;
+				margin-bottom: 1.5em;
+				padding: 1.5em 0 1em;
 				text-align: center;
 				line-height: 1;
 			}
 			.title h1 {
 				margin: 0 0 0.5em 0;
+				font-size: 2.2rem;
 			}
 			.date {
 				margin-bottom: 0.5em;
 				color: rgb(var(--gray));
+				font-size: 0.9rem;
 			}
 			.last-updated-on {
 				font-style: italic;
@@ -70,30 +74,38 @@ const { title, description, pubDate, updatedDate, heroImage, prevPost, nextPost 
 				display: flex;
 				justify-content: space-between;
 				gap: 1rem;
-				margin-top: 3rem;
-				padding-top: 2rem;
+				margin-top: var(--space-xl);
+				padding-top: var(--space-lg);
 				border-top: 1px solid rgb(var(--gray-light));
 			}
 			.post-nav a {
 				display: flex;
 				flex-direction: column;
-				gap: 0.25rem;
+				gap: 0.3rem;
 				text-decoration: none;
 				max-width: 45%;
+				padding: 0.75rem 1rem;
+				border-radius: var(--radius-md);
+				transition: background 0.2s;
+			}
+			.post-nav a:hover {
+				background: var(--surface-raised);
 			}
 			.post-nav a:hover .post-nav-title {
-				text-decoration: underline;
+				color: var(--accent);
 			}
 			.post-nav-label {
-				font-size: 0.8rem;
+				font-size: 0.75rem;
 				color: rgb(var(--gray));
 				text-transform: uppercase;
-				letter-spacing: 0.05em;
+				letter-spacing: 0.06em;
+				font-weight: 600;
 			}
 			.post-nav-title {
 				font-size: 0.95rem;
 				color: rgb(var(--black));
 				font-weight: 600;
+				transition: color 0.2s;
 			}
 			.post-nav .next {
 				text-align: right;

@@ -1,35 +1,65 @@
 /*
-  The CSS in this style tag is based off of Bear Blog's default CSS.
-  https://github.com/HermanMartinus/bearblog/blob/297026a877bc2ab2b3bdfbd6b9f7961c350917dd/templates/styles/blog/default.css
-  License MIT: https://github.com/HermanMartinus/bearblog/blob/master/LICENSE.md
+  Global design tokens and base styles for JamesWeng0428.github.io
+  Redesigned with a cohesive design system: refined palette, tighter type scale,
+  consistent spacing, border-radius, and shadow tokens.
  */
 
 :root {
-	--accent: #2337ff;
-	--accent-dark: #000d8a;
+	/* --- Color Palette --- */
+	--accent: #4f5bd5;
+	--accent-dark: #3a45a8;
+	--accent-light: #7b85e4;
 	--black: 15, 18, 25;
-	--gray: 96, 115, 159;
-	--gray-light: 229, 233, 240;
-	--gray-dark: 34, 41, 57;
+	--gray: 100, 110, 135;
+	--gray-light: 232, 235, 242;
+	--gray-dark: 40, 46, 62;
 	--gray-gradient: rgba(var(--gray-light), 50%), #fff;
-	--box-shadow:
-		0 2px 6px rgba(var(--gray), 25%), 0 8px 24px rgba(var(--gray), 33%),
-		0 16px 32px rgba(var(--gray), 33%);
+	--surface: #ffffff;
+	--surface-raised: #f8f9fc;
+
+	/* --- Shadow System --- */
+	--shadow-sm: 0 1px 3px rgba(15, 18, 25, 0.06), 0 1px 2px rgba(15, 18, 25, 0.04);
+	--shadow-md: 0 4px 12px rgba(15, 18, 25, 0.08), 0 2px 4px rgba(15, 18, 25, 0.04);
+	--shadow-lg: 0 12px 32px rgba(15, 18, 25, 0.1), 0 4px 8px rgba(15, 18, 25, 0.06);
+
+	/* --- Border Radius --- */
+	--radius-sm: 6px;
+	--radius-md: 12px;
+	--radius-lg: 20px;
+	--radius-full: 9999px;
+
+	/* --- Spacing --- */
+	--space-xs: 0.5rem;
+	--space-sm: 1rem;
+	--space-md: 1.5rem;
+	--space-lg: 2.5rem;
+	--space-xl: 4rem;
+	--space-2xl: 6rem;
 }
+
+/* --- Dark Mode --- */
 @media (prefers-color-scheme: dark) {
 	:root {
-		--accent: #6b7bff;
-		--accent-dark: #8b9aff;
-		--black: 229, 233, 240;
-		--gray: 160, 170, 190;
-		--gray-light: 55, 60, 75;
-		--gray-dark: 210, 215, 225;
-		--gray-gradient: rgba(var(--gray-light), 50%), #1a1a2e;
+		--accent: #8b95f7;
+		--accent-dark: #a8b0fa;
+		--accent-light: #6b75d4;
+		--black: 235, 238, 245;
+		--gray: 155, 165, 185;
+		--gray-light: 45, 50, 65;
+		--gray-dark: 215, 220, 232;
+		--gray-gradient: rgba(var(--gray-light), 50%), #12121f;
+		--surface: #16162a;
+		--surface-raised: #1e1e36;
+		--shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.2), 0 1px 2px rgba(0, 0, 0, 0.15);
+		--shadow-md: 0 4px 12px rgba(0, 0, 0, 0.25), 0 2px 4px rgba(0, 0, 0, 0.15);
+		--shadow-lg: 0 12px 32px rgba(0, 0, 0, 0.3), 0 4px 8px rgba(0, 0, 0, 0.2);
 	}
 	body {
-		background-color: #1a1a2e;
+		background-color: var(--surface);
 	}
 }
+
+/* --- Typography --- */
 @font-face {
 	font-family: "Atkinson";
 	src: url("/fonts/atkinson-regular.woff") format("woff");
@@ -44,6 +74,7 @@
 	font-style: normal;
 	font-display: swap;
 }
+
 body {
 	font-family: "Atkinson", sans-serif;
 	margin: 0;
@@ -54,54 +85,62 @@ body {
 	word-wrap: break-word;
 	overflow-wrap: break-word;
 	color: rgb(var(--gray-dark));
-	font-size: 20px;
+	font-size: 18px;
 	line-height: 1.7;
 }
+
 main {
 	width: 720px;
 	max-width: calc(100% - 2em);
 	margin: auto;
 	padding: 3em 1em;
 }
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
+
+/* Tighter modular scale (~1.2 ratio) */
+h1, h2, h3, h4, h5, h6 {
 	margin: 0 0 0.5rem 0;
 	color: rgb(var(--black));
-	line-height: 1.2;
+	line-height: 1.25;
+	letter-spacing: -0.01em;
 }
 h1 {
-	font-size: 3.052em;
+	font-size: 2.4em;
+	font-weight: 700;
+	letter-spacing: -0.025em;
 }
 h2 {
-	font-size: 2.441em;
-}
-h3 {
-	font-size: 1.953em;
-}
-h4 {
-	font-size: 1.563em;
-}
-h5 {
-	font-size: 1.25em;
-}
-strong,
-b {
+	font-size: 1.8em;
 	font-weight: 700;
 }
+h3 {
+	font-size: 1.4em;
+	font-weight: 700;
+}
+h4 {
+	font-size: 1.15em;
+	font-weight: 700;
+}
+h5 {
+	font-size: 1em;
+	font-weight: 700;
+}
+strong, b {
+	font-weight: 700;
+}
+
+/* --- Links --- */
 a {
 	color: var(--accent);
 	text-decoration-thickness: 1px;
 	text-underline-offset: 3px;
-	transition: text-decoration-color 0.2s;
+	transition: color 0.2s, text-decoration-color 0.2s;
 }
 a:hover {
-	color: var(--accent);
-	text-decoration-color: var(--accent);
+	color: var(--accent-dark);
+	text-decoration-color: var(--accent-dark);
 }
+
+/* --- Base Elements --- */
 p {
 	margin-bottom: 1em;
 }
@@ -121,58 +160,63 @@ table {
 img {
 	max-width: 100%;
 	height: auto;
-	border-radius: 8px;
+	border-radius: var(--radius-md);
 }
 code {
-	padding: 2px 5px;
+	padding: 2px 6px;
 	background-color: rgb(var(--gray-light));
-	border-radius: 2px;
+	border-radius: var(--radius-sm);
+	font-size: 0.9em;
 }
 pre {
 	padding: 1.5em;
-	border-radius: 8px;
+	border-radius: var(--radius-md);
 }
 pre > code {
 	all: unset;
 }
 blockquote {
-	border-left: 4px solid var(--accent);
-	padding: 0 0 0 20px;
-	margin: 0;
-	font-size: 1.333em;
+	border-left: 3px solid var(--accent);
+	padding: 0 0 0 1.25rem;
+	margin: 1.5rem 0;
+	font-size: 1.1em;
+	color: rgb(var(--gray));
+	font-style: italic;
 }
 hr {
 	border: none;
 	border-top: 1px solid rgb(var(--gray-light));
 }
+
+/* --- Responsive --- */
 @media (max-width: 720px) {
 	body {
-		font-size: 18px;
+		font-size: 17px;
 	}
 	main {
 		padding: 1em;
 	}
 }
 
-/* Custom text selection */
+/* --- Selection --- */
 ::selection {
-	background: rgba(35, 55, 255, 0.15);
+	background: rgba(79, 91, 213, 0.15);
 	color: inherit;
 }
 @media (prefers-color-scheme: dark) {
 	::selection {
-		background: rgba(107, 123, 255, 0.25);
+		background: rgba(139, 149, 247, 0.25);
 	}
 }
 
-/* Focus styles for keyboard navigation */
+/* --- Focus Styles --- */
 :focus-visible {
 	outline: 2px solid var(--accent);
 	outline-offset: 3px;
 	border-radius: 2px;
 }
 
-/* Scroll-reveal animation */
+/* --- Scroll-reveal animation --- */
 .reveal {
 	opacity: 0;
 	transform: translateY(20px);
@@ -183,6 +227,7 @@ hr {
 	transform: translateY(0);
 }
 
+/* --- Screen reader only --- */
 .sr-only {
 	border: 0;
 	padding: 0;

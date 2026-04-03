@@ -14,28 +14,46 @@ import { SITE_TITLE } from '../consts';
 			main {
 				max-width: 720px;
 				margin: 0 auto;
-				padding: 4rem 1rem;
+				padding: var(--space-2xl) var(--space-sm);
 				text-align: center;
 			}
-			h1 {
-				font-size: 4rem;
-				margin: 0 0 0.5rem;
+			.error-code {
+				font-size: 6rem;
+				font-weight: 700;
+				color: rgb(var(--gray-light));
+				margin: 0;
+				line-height: 1;
+				letter-spacing: -0.05em;
 			}
 			p {
 				color: rgb(var(--gray));
-				margin-bottom: 2rem;
+				margin: var(--space-sm) 0 var(--space-lg);
+				font-size: 1.1rem;
 			}
-			a {
-				color: var(--accent);
+			.home-link {
+				display: inline-flex;
+				padding: 0.6rem 1.5rem;
+				background: var(--accent);
+				color: #fff;
+				border-radius: var(--radius-sm);
+				text-decoration: none;
+				font-weight: 600;
+				font-size: 0.9rem;
+				transition: background 0.2s, transform 0.2s;
+			}
+			.home-link:hover {
+				background: var(--accent-dark);
+				color: #fff;
+				transform: translateY(-1px);
 			}
 		</style>
 	</head>
 	<body>
 		<Header />
 		<main id="main-content" transition:animate={fade({ duration: '0.3s' })}>
-			<h1>404</h1>
+			<h1 class="error-code">404</h1>
 			<p>This page doesn't exist.</p>
-			<a href="/">Back to home</a>
+			<a href="/" class="home-link">Back to home</a>
 		</main>
 		<Footer />
 	</body>
