@@ -1,0 +1,79 @@
+---
+// src/components/Hero.astro
+---
+
+<div class="wrap hero" data-hero-variant="editorial">
+	<div class="hero-layout">
+		<div class="hero-copy">
+			<div class="fade-up">
+				<span class="eyebrow">James Weng · CS + Education @ UIUC</span>
+			</div>
+			<h1 class="hero-display fade-up d1">
+				Engineer by craft,<br />
+				<em>writer by habit.</em>
+			</h1>
+			<p class="hero-lede fade-up d2">
+				I build backend systems and ship reliable software. I also write short essays about growth,
+				responsibility, and the strange business of becoming an adult. Currently open to new roles.
+			</p>
+			<div class="fade-up d3" style="display: flex; gap: 0.75rem; flex-wrap: wrap;">
+				<a class="btn" href="#contact">
+					Get in touch <span class="btn-arrow">→</span>
+				</a>
+				<a class="btn btn-ghost" href="#projects">See my work</a>
+			</div>
+		</div>
+		<div class="hero-avatar fade-up d2">
+			<img src="/avatar.png" alt="James Weng" />
+		</div>
+	</div>
+	<div class="hero-meta fade-up d4">
+		<div class="hero-meta-item">
+			<span class="k">Based in</span>
+			<span class="v">Urbana, IL · Shenzhen, CN</span>
+		</div>
+		<div class="hero-meta-item">
+			<span class="k">Focus</span>
+			<span class="v">Backend · Software · Writing</span>
+		</div>
+		<div class="hero-meta-item">
+			<span class="k">Status</span>
+			<span class="v">Open to new roles</span>
+		</div>
+	</div>
+</div>
+
+<style>
+	.hero-layout {
+		display: grid;
+		grid-template-columns: 1fr auto;
+		gap: 3rem;
+		align-items: center;
+		margin-bottom: 3rem;
+	}
+	.hero-avatar {
+		width: 180px;
+		height: 180px;
+		border-radius: 50%;
+		overflow: hidden;
+		border: 1px solid var(--rule);
+		flex-shrink: 0;
+	}
+	.hero-avatar img {
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+		display: block;
+	}
+	@media (max-width: 680px) {
+		.hero-layout {
+			grid-template-columns: 1fr;
+			gap: 2rem;
+		}
+		.hero-avatar {
+			width: 140px;
+			height: 140px;
+			order: -1;
+		}
+	}
+</style>

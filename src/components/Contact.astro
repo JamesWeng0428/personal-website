@@ -1,0 +1,38 @@
+---
+const contacts = [
+	{ k: 'Email', v: 'Wengzhiheng1@outlook.com', href: 'mailto:Wengzhiheng1@outlook.com' },
+	{ k: 'GitHub', v: 'JamesWeng0428', href: 'https://github.com/JamesWeng0428' },
+	{ k: 'LinkedIn', v: 'in/JamesWeng0428', href: 'https://www.linkedin.com/in/JamesWeng0428' },
+	{ k: 'Instagram', v: '@jamesweng0428', href: 'https://www.instagram.com/jamesweng0428/' },
+	{ k: 'Strava', v: 'James Weng', href: 'https://www.strava.com/athletes/124960807' },
+	{ k: 'Resume', v: 'Download PDF', href: '/resume.pdf' },
+];
+---
+
+<section id="contact" style="border-bottom: none;">
+	<div class="wrap contact">
+		<div class="contact-inner">
+			<h2 class="contact-headline">Let's <em>talk.</em></h2>
+			<div class="contact-links">
+				{
+					contacts.map((c) => (
+						<a
+							class="contact-link"
+							href={c.href}
+							target={c.href.startsWith('http') ? '_blank' : undefined}
+							rel={c.href.startsWith('http') ? 'noopener noreferrer' : undefined}
+						>
+							<span class="k">{c.k}</span>
+							<span class="v">{c.v}</span>
+							<span class="arr">↗</span>
+						</a>
+					))
+				}
+			</div>
+		</div>
+		<footer>
+			<span>© James Weng — 2026</span>
+			<span>Urbana, IL</span>
+		</footer>
+	</div>
+</section>
